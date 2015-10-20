@@ -3,35 +3,41 @@
  */
 $(document).ready(function() {
   var score = 0,
-      i = 0;
-  function typing(e, textArr) {
+      i = 1;
+  $('input').prop('disabled', true);
+  function typing(e) {
     var input = $('input').val(),
-        l = textArr.length;
-    console.log(input);
+        text = $('.content span:nth-child('+i+')').text();
+    console.log(text);
+    if(text.indexOf(input) < 0 ) {
+      $('.content span:nth-child('+i+')').addClass('wrong');
+    }
+
     if(e.keyCode === 32) {
       e.preventDefault();
-      if(textArr[i] == input) {
+      if(text == input) {
         score = score + 10;
-        i = i+1;
-        console.log(score);
         $('input').val('');
+        $('.content span:nth-child('+i+')').removeClass('wrong').addClass('right');
+        i = i + 1;
       }
       else {
         score = score - 5;
-        i = i + 1;
-        console.log(score);
         $('input').val('');
+        $('.content span:nth-child('+i+')').addClass('wrong');
+        i = i + 1;
       }
 
     }
   }
   $('input').on('keypress',function(e){
     var textArr = $('div').text().trim().split(' ');
-    typing(e, textArr);
+    typing(e);
   });
 
   var totalTime = 60;
   $('button').on('click', function() {
+    $('input').prop('disabled', false);
     var set = setInterval(function() {
       totalTime = totalTime - 1;
       if (totalTime == -1) {

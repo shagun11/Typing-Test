@@ -17,3 +17,11 @@ form input {
 .container {
   padding: 10px 50px;
 }
+
+.right {
+  color: green;
+}
+
+.wrong {
+  color: red;
+}
