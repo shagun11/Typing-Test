@@ -32,12 +32,21 @@ $(document).ready(function() {
 
   var totalTime = 60;
   $('button').on('click', function() {
-    setInterval(function() {
-      totalTime = countdown(totalTime);
+    var set = setInterval(function() {
+      totalTime = totalTime - 1;
+      if (totalTime == -1) {
+        $('input').prop('disabled', true);
+        clearInterval(set);
+        showScore();
+      }
+      else {
+        $('#timer').text(totalTime);
+      }
     }, 1000);
   });
 
-  function countdown(time) {
-    return time-1;
+  function showScore() {
+    $('#score').text(score);
   }
+
 });
