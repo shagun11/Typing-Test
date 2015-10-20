@@ -1,0 +1,19 @@
+form input {
+  width: 540px;
+  margin: 20px 0;
+  font-size: 24px;
+}
+
+.content {
+  width: 500px;
+  height: 400px;
+  padding: 10px 20px;
+  line-height: 1.1em;
+  font-size: 36px;
+  border: 2px solid #ccc;
+  overflow-y: hidden;
+}
+
+.container {
+  padding: 10px 50px;
+}
