@@ -3,12 +3,12 @@
  */
 $(document).ready(function() {
   var score = 0,
-      i = 1;
+      i = 1,
+      totalTime = 60;
   $('input').prop('disabled', true);
   function typing(e) {
     var input = $('input').val(),
         text = $('.content span:nth-child('+i+')').text();
-    console.log(text);
     if(text.indexOf(input) < 0 ) {
       $('.content span:nth-child('+i+')').addClass('wrong');
     }
@@ -16,26 +16,22 @@ $(document).ready(function() {
     if(e.keyCode === 32) {
       e.preventDefault();
       if(text == input) {
-        score = score + 10;
-        $('input').val('');
         $('.content span:nth-child('+i+')').removeClass('wrong').addClass('right');
-        i = i + 1;
+        calculate(10);
       }
       else {
-        score = score - 5;
-        $('input').val('');
         $('.content span:nth-child('+i+')').addClass('wrong');
-        i = i + 1;
+        calculate(-5);
       }
 
     }
   }
+
   $('input').on('keypress',function(e){
     var textArr = $('div').text().trim().split(' ');
     typing(e);
   });
 
-  var totalTime = 60;
   $('button').on('click', function() {
     $('input').prop('disabled', false);
     var set = setInterval(function() {
@@ -51,8 +47,21 @@ $(document).ready(function() {
     }, 1000);
   });
 
+
   function showScore() {
     $('#score').text(score);
   }
 
+  function calculate(num) {
+    score = score + num;
+    if(score < 0) {
+      score = 0;
+    }
+    $('input').val('');
+    i = i + 1;
+  }
+
+  function calculateSpeed() {
+
+  }
 });

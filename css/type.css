@@ -1,3 +1,7 @@
+body {
+  background-color: #BBDEFB!important;
+}
+
 form input {
   width: 540px;
   margin: 20px 0;
@@ -21,9 +25,17 @@ form input {
 }
 
 .right {
-  color: green;
+  color: #4CAF50;
 }
 
 .wrong {
-  color: red;
+  color: #D32F2F;
+}
+
+div.mui-panel {
+  background-color: #009688;
+}
+
+div.content {
+  background-color: #ffffff;
 }
